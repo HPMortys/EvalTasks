@@ -1,10 +1,8 @@
-from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.future import select
 from sqlalchemy import delete
-from sqlalchemy import text  # Import text function
 from task2.models import UserDTO, User
 
 Base = declarative_base()
@@ -39,7 +37,6 @@ class UsersService:
             statement = delete(User).where(User.id == user_id)
             await session.execute(statement)
             await session.commit()
-
 
 
 if __name__ == "__main__":
